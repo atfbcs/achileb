@@ -1,65 +1,178 @@
+import {
+  Bot,
+  BriefcaseBusiness,
+  Github,
+  GraduationCap,
+  Link as LinkIcon,
+  Mail,
+  Plane,
+  Phone,
+  PauseCircle,
+} from "lucide-react";
 import Image from "next/image";
+
+import { GithubCalendar } from "@/components/GithubCalendar";
+import { LinkButton } from "@/components/LinkButton";
+import { Section } from "@/components/Section";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="min-h-screen bg-zinc-50 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
+      <div className="mx-auto max-w-xl px-4 py-10">
+        <header className="text-center">
+          <div className="mx-auto h-16 w-16 overflow-hidden rounded-2xl bg-transparent shadow-sm ring-1 ring-black/5">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/pfp.png"
+              alt="Achile B."
+              width={160}
+              height={160}
+              className="h-full w-full object-cover"
+              priority
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </div>
+          <h1 className="mt-4 text-2xl font-semibold tracking-tight">
+            Achile B.
+          </h1>
+          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+            Software Engineer @ Sidestream · Student (Handelswetenschappen,
+            UGent) · 21
+          </p>
+        </header>
+
+        <main className="mt-8 space-y-10">
+          <Section title="Links" description="Products, profiles, and work.">
+            <div className="space-y-3">
+              <LinkButton
+                href="https://ticketbalie.com"
+                title="Ticketbalie"
+                subtitle="Ticketing platform for events — sales, check-in, and attendee access"
+                icon={<LinkIcon className="h-5 w-5" aria-hidden="true" />}
+              />
+              <LinkButton
+                href="https://dazzap.com"
+                title="Dazzap"
+                subtitle="AI on WhatsApp that qualifies leads and captures customer details"
+                icon={<LinkIcon className="h-5 w-5" aria-hidden="true" />}
+              />
+              <LinkButton
+                href="https://app.trapspotter.com/login"
+                title="TrapSpotter"
+                subtitle="Real-time community alerts for police controls and road checks"
+                icon={<LinkIcon className="h-5 w-5" aria-hidden="true" />}
+              />
+              <LinkButton
+                href="https://github.com/atfbcs"
+                title="GitHub — @atfbcs"
+                subtitle="Code, experiments, and contributions"
+                icon={<Github className="h-5 w-5" aria-hidden="true" />}
+              />
+            </div>
+          </Section>
+
+          <Section title="Contact" description="Fastest way to reach me.">
+            <div className="space-y-3">
+              <LinkButton
+                href="tel:+32499811871"
+                title="+32 499 81 18 71"
+                subtitle="Phone"
+                icon={<Phone className="h-5 w-5" aria-hidden="true" />}
+              />
+              <LinkButton
+                href="mailto:achilebatier@gmail.com"
+                title="achilebatier@gmail.com"
+                subtitle="Email"
+                icon={<Mail className="h-5 w-5" aria-hidden="true" />}
+              />
+              <LinkButton
+                href="mailto:achile@dazzap.com"
+                title="achile@dazzap.com"
+                subtitle="Email (Dazzap)"
+                icon={<Mail className="h-5 w-5" aria-hidden="true" />}
+              />
+              <LinkButton
+                href="mailto:achile@ticketbalie.com"
+                title="achile@ticketbalie.com"
+                subtitle="Email (Ticketbalie)"
+                icon={<Mail className="h-5 w-5" aria-hidden="true" />}
+              />
+            </div>
+          </Section>
+
+          <Section title="Now" description="What I’m focused on lately.">
+            <div className="rounded-2xl border border-zinc-200 bg-white p-4 text-sm text-zinc-700 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300">
+              <ul className="space-y-2">
+                <li className="flex gap-2">
+                  <BriefcaseBusiness className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
+                  <span>
+                    Software Engineer at <span className="font-medium">Sidestream</span>
+                    , building products.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <Bot className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
+                  <span>
+                    Automation work delivered for{" "}
+                    <span className="font-medium">House of Talents</span> and{" "}
+                    <span className="font-medium">VNZ.be</span>.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <Plane className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
+                  <span>
+                    Under contract at <span className="font-medium">ASL Airlines</span>{" "}
+                    to build a mobile app soon.
+                  </span>
+                </li>
+                <li className="flex gap-2">
+                  <GraduationCap className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
+                  <span>
+                    Studying <span className="font-medium">Handelswetenschappen</span>{" "}
+                    at <span className="font-medium">UGent</span>.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </Section>
+
+          <Section
+            title="Paused projects"
+            description="Things I explored and may revisit."
           >
-            Documentation
-          </a>
-        </div>
-      </main>
+            <div className="space-y-3">
+              <LinkButton
+                href="https://bondable.co"
+                title="Bondable.co"
+                subtitle="Paused"
+                icon={<PauseCircle className="h-5 w-5" aria-hidden="true" />}
+              />
+              <LinkButton
+                href="https://censorship.cc"
+                title="censorship.cc"
+                subtitle="Paused"
+                icon={<PauseCircle className="h-5 w-5" aria-hidden="true" />}
+              />
+            </div>
+          </Section>
+
+          <Section title="GitHub activity" description="Recent contribution graph.">
+            <GithubCalendar username="atfbcs" />
+          </Section>
+        </main>
+
+        <footer className="hidden mt-10 text-center text-xs text-zinc-500 dark:text-zinc-500">
+          <p>
+            Minimal portfolio · Built with Next.js + Tailwind · GitHub:{" "}
+            <a
+              className="underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-500 dark:decoration-zinc-700 dark:hover:decoration-zinc-400"
+              href="https://github.com/atfbcs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @atfbcs
+            </a>
+          </p>
+        </footer>
+      </div>
     </div>
   );
 }
