@@ -34,8 +34,8 @@ export default function Home() {
             Achile B.
           </h1>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-            Software Engineer @ Sidestream · Student (Handelswetenschappen,
-            UGent) · 21
+            Software Engineer @ Sidestream · Student (Business Economics,
+            UGent) · 20
           </p>
         </header>
 
@@ -55,7 +55,7 @@ export default function Home() {
                 icon={<LinkIcon className="h-5 w-5" aria-hidden="true" />}
               />
               <LinkButton
-                href="https://app.trapspotter.com/login"
+                href="https://trapspotter-home.vercel.app"
                 title="TrapSpotter"
                 subtitle="Real-time community alerts for police controls and road checks"
                 icon={<LinkIcon className="h-5 w-5" aria-hidden="true" />}
@@ -112,7 +112,15 @@ export default function Home() {
                   <Bot className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
                   <span>
                     Automation work delivered for{" "}
-                    <span className="font-medium">House of Talents</span> and{" "}
+                    <a
+                      className="font-medium underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-500 dark:decoration-zinc-700 dark:hover:decoration-zinc-400"
+                      href="https://youtu.be/YVOCStE1zJo"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      House of Talents
+                    </a>{" "}
+                    and{" "}
                     <span className="font-medium">VNZ.be</span>.
                   </span>
                 </li>
@@ -126,7 +134,7 @@ export default function Home() {
                 <li className="flex gap-2">
                   <GraduationCap className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
                   <span>
-                    Studying <span className="font-medium">Handelswetenschappen</span>{" "}
+                    Studying <span className="font-medium">Business Economics</span>{" "}
                     at <span className="font-medium">UGent</span>.
                   </span>
                 </li>
