@@ -62,18 +62,21 @@ export default function Home() {
                 title="Ticketbalie"
                 subtitle="Ticketing platform for events — sales, check-in, and attendee access"
                 screenshotUrl="https://ticketbalie.com"
+                localImagePath="/ticketbalie.png"
               />
               <ProductCard
                 href="https://dazzap.com"
                 title="Dazzap"
                 subtitle="AI on WhatsApp that qualifies leads and captures customer details"
                 screenshotUrl="https://dazzap.com"
+                localImagePath="/dazzap.png"
               />
               <ProductCard
                 href="https://trapspotter-home.vercel.app"
                 title="TrapSpotter"
                 subtitle="Real-time community alerts for police controls and road checks"
                 screenshotUrl="https://trapspotter-home.vercel.app"
+                localImagePath="/trapspotter.png"
               />
               <ProductCard
                 href="https://www.vnz.be"
