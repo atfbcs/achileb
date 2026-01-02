@@ -21,6 +21,13 @@ function getScreenshotApiUrl(url: string): string {
   return `https://htmlcsstoimage.com/demo_run?url=${encodeURIComponent(url)}`;
 }
 
+function isMobileDevice(): boolean {
+  if (typeof window === "undefined") return false;
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  ) || window.innerWidth < 768;
+}
+
 export function ProductCard({ href, title, subtitle, screenshotUrl, useScreenshotApi = false, localImagePath }: ProductCardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -28,8 +35,15 @@ export function ProductCard({ href, title, subtitle, screenshotUrl, useScreensho
   const [iframeError, setIframeError] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    setIsMobile(isMobileDevice());
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return; // Skip iframe scaling on mobile
+    
     const updateScale = () => {
       if (containerRef.current) {
         const width = containerRef.current.offsetWidth;
@@ -44,11 +58,17 @@ export function ProductCard({ href, title, subtitle, screenshotUrl, useScreensho
     };
     window.addEventListener("resize", handleResize, { passive: true });
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [isMobile]);
 
   // Detect iframe load errors with timeout
   useEffect(() => {
-    if (localImagePath || useScreenshotApi || iframeError || iframeLoaded) return;
+    if (isMobile || localImagePath || useScreenshotApi || iframeError || iframeLoaded) {
+      // On mobile, always use placeholder instead of iframe
+      if (isMobile && !localImagePath) {
+        setIframeError(true);
+      }
+      return;
+    }
     
     const timeout = setTimeout(() => {
       if (!iframeLoaded && iframeRef.current) {
@@ -57,7 +77,7 @@ export function ProductCard({ href, title, subtitle, screenshotUrl, useScreensho
     }, 10000); // 10 second timeout
 
     return () => clearTimeout(timeout);
-  }, [localImagePath, useScreenshotApi, iframeError, iframeLoaded]);
+  }, [isMobile, localImagePath, useScreenshotApi, iframeError, iframeLoaded]);
 
   const imageUrl = useScreenshotApi ? getScreenshotApiUrl(screenshotUrl) : null;
 
@@ -80,6 +100,15 @@ export function ProductCard({ href, title, subtitle, screenshotUrl, useScreensho
                 unoptimized
                 sizes="256px"
               />
+            ) : isMobile ? (
+              // On mobile, show simple placeholder immediately to avoid crashes
+              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900">
+                <div className="text-center">
+                  <ExternalLink className="mx-auto mb-2 h-8 w-8 text-zinc-400 dark:text-zinc-600" />
+                  <p className="text-xs font-medium text-zinc-600 dark:text-zinc-400">{title}</p>
+                  <p className="mt-1 text-[10px] text-zinc-500 dark:text-zinc-500">Click to visit</p>
+                </div>
+              </div>
             ) : useScreenshotApi || iframeError ? (
               imageError ? (
                 <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900">
