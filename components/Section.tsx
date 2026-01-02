@@ -4,11 +4,12 @@ type SectionProps = {
   title: string;
   description?: string;
   children: ReactNode;
+  className?: string;
 };
 
-export function Section({ title, description, children }: SectionProps) {
+export function Section({ title, description, children, className }: SectionProps) {
   return (
-    <section className="space-y-3">
+    <section className={`space-y-3 ${className ?? ""}`}>
       <div>
         <h2 className="text-sm font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
           {title}

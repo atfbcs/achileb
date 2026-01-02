@@ -6,9 +6,16 @@ type LinkButtonProps = {
   title: string;
   subtitle?: string;
   icon?: ReactNode;
+  iconContainerClassName?: string;
 };
 
-export function LinkButton({ href, title, subtitle, icon }: LinkButtonProps) {
+export function LinkButton({
+  href,
+  title,
+  subtitle,
+  icon,
+  iconContainerClassName,
+}: LinkButtonProps) {
   return (
     <a
       href={href}
@@ -17,7 +24,12 @@ export function LinkButton({ href, title, subtitle, icon }: LinkButtonProps) {
       className="group flex w-full items-center justify-between gap-4 rounded-2xl border border-zinc-200 bg-white px-4 py-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700"
     >
       <div className="flex min-w-0 items-center gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 text-zinc-900 ring-1 ring-zinc-200 transition group-hover:ring-zinc-300 dark:bg-zinc-900 dark:text-zinc-50 dark:ring-zinc-800 dark:group-hover:ring-zinc-700">
+        <div
+          className={[
+            "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 text-zinc-900 ring-1 ring-zinc-200 transition group-hover:ring-zinc-300 dark:bg-zinc-900 dark:text-zinc-50 dark:ring-zinc-800 dark:group-hover:ring-zinc-700",
+            iconContainerClassName ?? "",
+          ].join(" ")}
+        >
           {icon ?? <ExternalLink className="h-5 w-5" aria-hidden="true" />}
         </div>
         <div className="min-w-0">

@@ -1,24 +1,39 @@
 import {
   Bot,
   BriefcaseBusiness,
+  Car,
   Github,
   GraduationCap,
   Link as LinkIcon,
   Mail,
+  MessageCircle,
   Plane,
   Phone,
   PauseCircle,
+  Store,
 } from "lucide-react";
 import Image from "next/image";
 
+import { AnimatedBanner } from "@/components/AnimatedBanner";
+import { AnimatedEmail } from "@/components/AnimatedEmail";
 import { GithubCalendar } from "@/components/GithubCalendar";
 import { LinkButton } from "@/components/LinkButton";
+import { ProductCard } from "@/components/ProductCard";
 import { Section } from "@/components/Section";
+import { GradientBarsBackground } from "@/components/ui/gradient-bars-background";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
-      <div className="mx-auto max-w-xl px-4 py-10">
+    <div className="relative min-h-screen bg-zinc-50 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
+      <GradientBarsBackground
+        numBars={7}
+        gradientFrom="rgba(0, 0, 0, 0.03)"
+        gradientTo="transparent"
+        gradientFromDark="rgba(255, 255, 255, 0.05)"
+        gradientToDark="transparent"
+        animationDuration={4}
+      />
+      <div className="relative z-10 mx-auto max-w-xl px-4 pt-10">
         <header className="text-center">
           <div className="mx-auto h-16 w-16 overflow-hidden rounded-2xl bg-transparent ">
             <Image
@@ -41,110 +56,50 @@ export default function Home() {
 
         <main className="mt-8 space-y-10">
           <Section title="Links" description="Products, profiles, and work.">
-            <div className="space-y-3">
-              <LinkButton
+            <div className="space-y-4">
+              <ProductCard
                 href="https://ticketbalie.com"
                 title="Ticketbalie"
                 subtitle="Ticketing platform for events — sales, check-in, and attendee access"
-                icon={<LinkIcon className="h-5 w-5" aria-hidden="true" />}
+                screenshotUrl="https://ticketbalie.com"
               />
-              <LinkButton
+              <ProductCard
                 href="https://dazzap.com"
                 title="Dazzap"
                 subtitle="AI on WhatsApp that qualifies leads and captures customer details"
-                icon={<LinkIcon className="h-5 w-5" aria-hidden="true" />}
+                screenshotUrl="https://dazzap.com"
               />
-              <LinkButton
+              <ProductCard
                 href="https://trapspotter.com"
                 title="TrapSpotter"
                 subtitle="Real-time community alerts for police controls and road checks"
-                icon={<LinkIcon className="h-5 w-5" aria-hidden="true" />}
+                screenshotUrl="https://trapspotter.com"
               />
-              <LinkButton
-                href="https://github.com/atfbcs"
-                title="GitHub — @atfbcs"
-                subtitle="Code, experiments, and contributions"
-                icon={<Github className="h-5 w-5" aria-hidden="true" />}
+              <ProductCard
+                href="https://www.vnz.be"
+                title="VNZ.be"
+                subtitle="Automation in development for healthcare insurance services"
+                screenshotUrl="https://www.vnz.be"
+                localImagePath="/vnz.png"
               />
-            </div>
-          </Section>
-
-          <Section title="Contact" description="Fastest way to reach me.">
-            <div className="space-y-3">
-              <LinkButton
-                href="tel:+32499811871"
-                title="+32 499 81 18 71"
-                subtitle="Phone"
-                icon={<Phone className="h-5 w-5" aria-hidden="true" />}
-              />
-              <LinkButton
-                href="mailto:achilebatier@gmail.com"
-                title="achilebatier@gmail.com"
-                subtitle="Email"
-                icon={<Mail className="h-5 w-5" aria-hidden="true" />}
-              />
-              <LinkButton
-                href="mailto:achile@dazzap.com"
-                title="achile@dazzap.com"
-                subtitle="Email (Dazzap)"
-                icon={<Mail className="h-5 w-5" aria-hidden="true" />}
-              />
-              <LinkButton
-                href="mailto:achile@ticketbalie.com"
-                title="achile@ticketbalie.com"
-                subtitle="Email (Ticketbalie)"
-                icon={<Mail className="h-5 w-5" aria-hidden="true" />}
+              <ProductCard
+                href="https://www.houseoftalents.be/nl-be"
+                title="House of Talents"
+                subtitle="Automation in development for HR and talent management"
+                screenshotUrl="https://www.houseoftalents.be/nl-be"
+                localImagePath="/hot.png"
               />
             </div>
           </Section>
 
-          <Section title="Now" description="What I’m focused on lately.">
-            <div className="rounded-2xl border border-zinc-200 bg-white p-4 text-sm text-zinc-700 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300">
-              <ul className="space-y-2">
-                <li className="flex gap-2">
-                  <BriefcaseBusiness className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
-                  <span>
-                    Software Engineer at <span className="font-medium">Sidestream</span>
-                    , building products.
-                  </span>
-                </li>
-                <li className="flex gap-2">
-                  <Bot className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
-                  <span>
-                    Automation work delivered for{" "}
-                    <a
-                      className="font-medium underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-500 dark:decoration-zinc-700 dark:hover:decoration-zinc-400"
-                      href="https://youtu.be/YVOCStE1zJo"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      House of Talents
-                    </a>{" "}
-                    and{" "}
-                    <span className="font-medium">VNZ.be</span>.
-                  </span>
-                </li>
-                <li className="flex gap-2">
-                  <Plane className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
-                  <span>
-                    Under contract at <span className="font-medium">ASL Airlines</span>{" "}
-                    to build a mobile app soon.
-                  </span>
-                </li>
-                <li className="flex gap-2">
-                  <GraduationCap className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />
-                  <span>
-                    Studying <span className="font-medium">Business Economics</span>{" "}
-                    at <span className="font-medium">UGent</span>.
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </Section>
+          <div className="hidden">
+            <AnimatedBanner />
+          </div>
 
           <Section
             title="Paused projects"
             description="Things I explored and may revisit."
+            className="hidden"
           >
             <div className="space-y-3">
               <LinkButton
@@ -162,10 +117,36 @@ export default function Home() {
             </div>
           </Section>
 
-          <Section title="GitHub activity" description="Recent contribution graph.">
-            <GithubCalendar username="atfbcs" />
-          </Section>
+          <div className="hidden">
+            <Section title="GitHub activity" description="Recent contribution graph.">
+              <GithubCalendar username="atfbcs" />
+            </Section>
+          </div>
         </main>
+
+        <section className="relative -mx-4 pt-8 pb-12 dark:border-zinc-800 sm:-mx-8 md:-mx-16 lg:-mx-32">
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-zinc-50 to-transparent dark:from-zinc-950" />
+          <div className="relative z-10 mx-auto max-w-xl px-4">
+            <div className="mb-4">
+              <h2 className="text-sm font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+                Contact
+              </h2>
+              <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                Fastest way to reach me.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-sm">
+              <a
+                href="tel:+32499811871"
+                className="flex items-center gap-2 text-zinc-700 hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-zinc-50"
+              >
+                <Phone className="h-4 w-4 shrink-0 text-zinc-500" aria-hidden="true" />
+                <span>+32 499 81 18 71</span>
+              </a>
+              <AnimatedEmail />
+            </div>
+          </div>
+        </section>
 
         <footer className="hidden mt-10 text-center text-xs text-zinc-500 dark:text-zinc-500">
           <p>
