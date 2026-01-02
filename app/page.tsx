@@ -55,7 +55,7 @@ export default function Home() {
                 icon={<LinkIcon className="h-5 w-5" aria-hidden="true" />}
               />
               <LinkButton
-                href="https://trapspotter-home.vercel.app"
+                href="https://trapspotter.com"
                 title="TrapSpotter"
                 subtitle="Real-time community alerts for police controls and road checks"
                 icon={<LinkIcon className="h-5 w-5" aria-hidden="true" />}
