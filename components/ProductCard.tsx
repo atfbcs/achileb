@@ -53,8 +53,17 @@ export function ProductCard({ href, title, subtitle, screenshotUrl, useScreensho
           <div className="absolute inset-0 bg-gradient-to-br from-zinc-50/50 to-transparent dark:from-zinc-950/50" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.03)_1px,transparent_0)] bg-[length:20px_20px] dark:bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.03)_1px,transparent_0)]" />
           <div className="relative h-full w-full overflow-hidden">
-            {useScreenshotApi || iframeError || localImagePath ? (
-              imageError && !localImagePath ? (
+            {localImagePath ? (
+              <Image
+                src={localImagePath}
+                alt={`${title} preview`}
+                fill
+                className="object-cover object-top"
+                unoptimized
+                sizes="256px"
+              />
+            ) : useScreenshotApi || iframeError ? (
+              imageError ? (
                 <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900">
                   <div className="text-center">
                     <ExternalLink className="mx-auto mb-2 h-8 w-8 text-zinc-400 dark:text-zinc-600" />
@@ -64,7 +73,7 @@ export function ProductCard({ href, title, subtitle, screenshotUrl, useScreensho
                 </div>
               ) : (
                 <Image
-                  src={localImagePath || imageUrl || getScreenshotApiUrl(screenshotUrl)}
+                  src={imageUrl || getScreenshotApiUrl(screenshotUrl)}
                   alt={`${title} preview`}
                   fill
                   className="object-cover object-top"

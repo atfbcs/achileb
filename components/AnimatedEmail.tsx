@@ -21,81 +21,77 @@ export function AnimatedEmail() {
   const [charIndex, setCharIndex] = useState(domains[0].length);
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+
     if (emailState === "domain") {
       const currentDomain = domains[domainIndex];
 
       if (isDeleting) {
         if (charIndex > 0) {
-          const timeout = setTimeout(() => {
+          timeoutId = setTimeout(() => {
             setDisplayText(baseEmail + currentDomain.slice(0, charIndex - 1));
             setCharIndex(charIndex - 1);
           }, 50);
-          return () => clearTimeout(timeout);
         } else {
-          setIsDeleting(false);
-          if (domainIndex === domains.length - 1) {
-            setEmailState("gmail-base");
-            setDisplayText(gmailParts.base);
-            setCharIndex(0);
-          } else {
-            setDomainIndex(domainIndex + 1);
-            setCharIndex(0);
-          }
+          // Transition to next state
+          timeoutId = setTimeout(() => {
+            setIsDeleting(false);
+            if (domainIndex === domains.length - 1) {
+              setEmailState("gmail-base");
+              setDisplayText(gmailParts.base);
+              setCharIndex(0);
+            } else {
+              setDomainIndex(domainIndex + 1);
+              setCharIndex(0);
+            }
+          }, 50);
         }
       } else {
         if (charIndex < currentDomain.length) {
-          const timeout = setTimeout(() => {
+          timeoutId = setTimeout(() => {
             setDisplayText(baseEmail + currentDomain.slice(0, charIndex + 1));
             setCharIndex(charIndex + 1);
           }, 100);
-          return () => clearTimeout(timeout);
         } else {
-          const pauseTimeout = setTimeout(() => {
+          timeoutId = setTimeout(() => {
             setIsDeleting(true);
           }, 2000);
-          return () => clearTimeout(pauseTimeout);
         }
       }
     } else if (emailState === "gmail-base") {
-      const timeout = setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setEmailState("gmail-middle");
         setCharIndex(0);
       }, 500);
-      return () => clearTimeout(timeout);
     } else if (emailState === "gmail-middle") {
       if (charIndex < gmailParts.middle.length) {
-        const timeout = setTimeout(() => {
+        timeoutId = setTimeout(() => {
           setDisplayText(gmailParts.base + gmailParts.middle.slice(0, charIndex + 1));
           setCharIndex(charIndex + 1);
         }, 100);
-        return () => clearTimeout(timeout);
       } else {
-        const pauseTimeout = setTimeout(() => {
+        timeoutId = setTimeout(() => {
           setEmailState("gmail-domain");
           setCharIndex(0);
         }, 800);
-        return () => clearTimeout(pauseTimeout);
       }
     } else if (emailState === "gmail-domain") {
       if (charIndex < gmailParts.domain.length) {
-        const timeout = setTimeout(() => {
+        timeoutId = setTimeout(() => {
           setDisplayText(
             gmailParts.base + gmailParts.middle + gmailParts.domain.slice(0, charIndex + 1)
           );
           setCharIndex(charIndex + 1);
         }, 100);
-        return () => clearTimeout(timeout);
       } else {
-        const pauseTimeout = setTimeout(() => {
+        timeoutId = setTimeout(() => {
           setEmailState("gmail-delete");
           setCharIndex(gmailParts.middle.length + gmailParts.domain.length);
         }, 2000);
-        return () => clearTimeout(pauseTimeout);
       }
     } else if (emailState === "gmail-delete") {
-      const totalToDelete = gmailParts.middle.length + gmailParts.domain.length;
       if (charIndex > 0) {
-        const timeout = setTimeout(() => {
+        timeoutId = setTimeout(() => {
           const remaining = charIndex - 1;
           if (remaining >= gmailParts.middle.length) {
             const domainChars = remaining - gmailParts.middle.length;
@@ -109,18 +105,22 @@ export function AnimatedEmail() {
           }
           setCharIndex(remaining);
         }, 50);
-        return () => clearTimeout(timeout);
       } else {
-        const timeout = setTimeout(() => {
+        timeoutId = setTimeout(() => {
           setEmailState("domain");
           setDomainIndex(0);
           setCharIndex(0);
           setIsDeleting(false);
           setDisplayText(baseEmail);
         }, 500);
-        return () => clearTimeout(timeout);
       }
     }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, [domainIndex, emailState, isDeleting, charIndex]);
 
   const getHref = () => {
