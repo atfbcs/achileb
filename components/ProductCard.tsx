@@ -15,10 +15,18 @@ interface ProductCardProps {
   localImagePath?: string;
 }
 
-function getScreenshotApiUrl(url: string): string {
-  // Using htmlcsstoimage.com - free tier, no API key needed for basic usage
-  // Alternative: Use a simple proxy or just show placeholder
-  return `https://htmlcsstoimage.com/demo_run?url=${encodeURIComponent(url)}`;
+function getScreenshotApiUrl(url: string, attempt: number = 0): string {
+  // Multiple screenshot API options as fallbacks
+  const services = [
+    // Option 1: htmlcsstoimage.com (primary - free tier)
+    `https://htmlcsstoimage.com/demo_run?url=${encodeURIComponent(url)}`,
+    // Option 2: screenshot.website (fallback)
+    `https://screenshot.website/${encodeURIComponent(url)}?width=1920&height=1080`,
+    // Option 3: image.thum.io (fallback)
+    `https://image.thum.io/get/width/1920/crop/1080/${encodeURIComponent(url)}`,
+  ];
+  
+  return services[attempt] || services[0];
 }
 
 function isMobileDevice(): boolean {
@@ -63,10 +71,6 @@ export function ProductCard({ href, title, subtitle, screenshotUrl, useScreensho
   // Detect iframe load errors with timeout
   useEffect(() => {
     if (isMobile || localImagePath || useScreenshotApi || iframeError || iframeLoaded) {
-      // On mobile, always use placeholder instead of iframe
-      if (isMobile && !localImagePath) {
-        setIframeError(true);
-      }
       return;
     }
     
@@ -79,7 +83,10 @@ export function ProductCard({ href, title, subtitle, screenshotUrl, useScreensho
     return () => clearTimeout(timeout);
   }, [isMobile, localImagePath, useScreenshotApi, iframeError, iframeLoaded]);
 
-  const imageUrl = useScreenshotApi ? getScreenshotApiUrl(screenshotUrl) : null;
+  // On mobile, always use screenshot API instead of iframes
+  const shouldUseScreenshot = isMobile && !localImagePath;
+  const [screenshotAttempt, setScreenshotAttempt] = useState(0);
+  const imageUrl = (useScreenshotApi || shouldUseScreenshot) ? getScreenshotApiUrl(screenshotUrl, screenshotAttempt) : null;
 
   return (
     <Link href={href} target="_blank" rel="noopener noreferrer" className="block">
@@ -100,16 +107,7 @@ export function ProductCard({ href, title, subtitle, screenshotUrl, useScreensho
                 unoptimized
                 sizes="256px"
               />
-            ) : isMobile ? (
-              // On mobile, show simple placeholder immediately to avoid crashes
-              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900">
-                <div className="text-center">
-                  <ExternalLink className="mx-auto mb-2 h-8 w-8 text-zinc-400 dark:text-zinc-600" />
-                  <p className="text-xs font-medium text-zinc-600 dark:text-zinc-400">{title}</p>
-                  <p className="mt-1 text-[10px] text-zinc-500 dark:text-zinc-500">Click to visit</p>
-                </div>
-              </div>
-            ) : useScreenshotApi || iframeError ? (
+            ) : shouldUseScreenshot || useScreenshotApi || iframeError ? (
               imageError ? (
                 <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900">
                   <div className="text-center">
@@ -120,13 +118,20 @@ export function ProductCard({ href, title, subtitle, screenshotUrl, useScreensho
                 </div>
               ) : (
                 <Image
-                  src={imageUrl || getScreenshotApiUrl(screenshotUrl)}
+                  src={imageUrl || getScreenshotApiUrl(screenshotUrl, screenshotAttempt)}
                   alt={`${title} preview`}
                   fill
                   className="object-cover object-top"
                   unoptimized
                   sizes="256px"
-                  onError={() => setImageError(true)}
+                  onError={() => {
+                    // Try next screenshot service as fallback
+                    if (screenshotAttempt < 2) {
+                      setScreenshotAttempt(screenshotAttempt + 1);
+                    } else {
+                      setImageError(true);
+                    }
+                  }}
                 />
               )
             ) : (

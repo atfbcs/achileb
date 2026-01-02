@@ -15,6 +15,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "**.htmlcsstoimage.com",
       },
+      {
+        protocol: "https",
+        hostname: "screenshot.website",
+      },
+      {
+        protocol: "https",
+        hostname: "image.thum.io",
+      },
     ],
   },
 };
