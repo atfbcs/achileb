@@ -23,9 +23,11 @@ function getScreenshotApiUrl(url: string): string {
 
 export function ProductCard({ href, title, subtitle, screenshotUrl, useScreenshotApi = false, localImagePath }: ProductCardProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const [scale, setScale] = useState(0.15);
   const [iframeError, setIframeError] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
 
   useEffect(() => {
     const updateScale = () => {
@@ -37,9 +39,25 @@ export function ProductCard({ href, title, subtitle, screenshotUrl, useScreensho
     };
 
     updateScale();
-    window.addEventListener("resize", updateScale);
-    return () => window.removeEventListener("resize", updateScale);
+    const handleResize = () => {
+      requestAnimationFrame(updateScale);
+    };
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Detect iframe load errors with timeout
+  useEffect(() => {
+    if (localImagePath || useScreenshotApi || iframeError || iframeLoaded) return;
+    
+    const timeout = setTimeout(() => {
+      if (!iframeLoaded && iframeRef.current) {
+        setIframeError(true);
+      }
+    }, 10000); // 10 second timeout
+
+    return () => clearTimeout(timeout);
+  }, [localImagePath, useScreenshotApi, iframeError, iframeLoaded]);
 
   const imageUrl = useScreenshotApi ? getScreenshotApiUrl(screenshotUrl) : null;
 
@@ -84,6 +102,7 @@ export function ProductCard({ href, title, subtitle, screenshotUrl, useScreensho
               )
             ) : (
               <iframe
+                ref={iframeRef}
                 src={screenshotUrl}
                 className="absolute left-1/2 top-1/2 h-[1080px] w-[1920px] origin-center opacity-100 transition-opacity duration-300 group-hover:opacity-100"
                 style={{
@@ -92,7 +111,8 @@ export function ProductCard({ href, title, subtitle, screenshotUrl, useScreensho
                   transformOrigin: "center center",
                 }}
                 title={`${title} preview`}
-                onError={() => setIframeError(true)}
+                loading="lazy"
+                onLoad={() => setIframeLoaded(true)}
               />
             )}
           </div>

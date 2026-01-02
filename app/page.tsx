@@ -70,10 +70,10 @@ export default function Home() {
                 screenshotUrl="https://dazzap.com"
               />
               <ProductCard
-                href="https://trapspotter.com"
+                href="https://trapspotter-home.vercel.app"
                 title="TrapSpotter"
                 subtitle="Real-time community alerts for police controls and road checks"
-                screenshotUrl="https://trapspotter.com"
+                screenshotUrl="https://trapspotter-home.vercel.app"
               />
               <ProductCard
                 href="https://www.vnz.be"
