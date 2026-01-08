@@ -79,6 +79,13 @@ export default function Home() {
                 localImagePath="/trapspotter.png"
               />
               <ProductCard
+                href="https://gooner.be"
+                title="investeren.org"
+                subtitle="Investment platform and financial services"
+                screenshotUrl="https://gooner.be"
+                localImagePath="/investeren.png"
+              />
+              <ProductCard
                 href="https://www.vnz.be"
                 title="VNZ.be"
                 subtitle="Automation in development for healthcare insurance services"
