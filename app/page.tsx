@@ -82,7 +82,7 @@ export default function Home() {
                 href="https://gooner.be"
                 title="investeren.org"
                 subtitle="Investment platform and financial services"
-                screenshotUrl="https://gooner.be"
+                screenshotUrl="https://investeren.org"
                 localImagePath="/investeren.png"
               />
               <ProductCard
