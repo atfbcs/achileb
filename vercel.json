@@ -1,0 +1,16 @@
+{
+  "functions": {
+    "app/**/*.tsx": {
+      "runtime": "nodejs18.x"
+    },
+    "app/**/*.ts": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}

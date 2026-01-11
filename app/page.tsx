@@ -22,6 +22,9 @@ import { ProductCard } from "@/components/ProductCard";
 import { Section } from "@/components/Section";
 import { GradientBarsBackground } from "@/components/ui/gradient-bars-background";
 
+// Use Node.js runtime instead of Edge Functions
+export const runtime = 'nodejs';
+
 export default function Home() {
   return (
     <div className="relative min-h-screen bg-zinc-50 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
@@ -72,7 +75,7 @@ export default function Home() {
                 localImagePath="/dazzap.png"
               />
               <ProductCard
-                href="https://trapspotter-home.vercel.app"
+                href="https://trapspotter.com"
                 title="TrapSpotter"
                 subtitle="Real-time community alerts for police controls and road checks"
                 screenshotUrl="https://trapspotter-home.vercel.app"

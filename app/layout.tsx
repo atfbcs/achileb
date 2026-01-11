@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   },
 };
 
+// Use Node.js runtime instead of Edge Functions
+export const runtime = 'nodejs';
+
 export default function RootLayout({
   children,
 }: Readonly<{
