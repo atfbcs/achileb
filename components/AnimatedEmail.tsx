@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Mail } from "lucide-react";
 
-const domains = ["dazzap.com", "ticketbalie.com", "trapspotter.com"];
+const domains = ["sidestream.be", "dazzap.com", "ticketbalie.com", "trapspotter.com"];
 const baseEmail = "achile@";
 const gmailParts = {
   base: "achile",

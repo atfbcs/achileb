@@ -61,6 +61,13 @@ export default function Home() {
           <Section title="Links" description="Products, profiles, and work.">
             <div className="space-y-4">
               <ProductCard
+                href="https://sidestream.com"
+                title="Sidestream"
+                subtitle="Building custom projects for clients — AI automations, websites, and apps. "
+                screenshotUrl="https://sidestream.com"
+                localImagePath="/sidestream2.png"
+              />
+              <ProductCard
                 href="https://ticketbalie.com"
                 title="Ticketbalie"
                 subtitle="Ticketing platform for events — sales, check-in, and attendee access"
