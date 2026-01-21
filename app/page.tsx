@@ -88,13 +88,7 @@ export default function Home() {
                 screenshotUrl="https://trapspotter-home.vercel.app"
                 localImagePath="/trapspotter.png"
               />
-              <ProductCard
-                href="https://investeren.org"
-                title="investeren.org"
-                subtitle="Investment platform and financial services"
-                screenshotUrl="https://investeren.org"
-                localImagePath="/investeren.png"
-              />
+
               <ProductCard
                 href="https://www.vnz.be"
                 title="VNZ.be"
