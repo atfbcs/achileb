@@ -68,6 +68,13 @@ export default function Home() {
                 localImagePath="/sidestream2.png"
               />
               <ProductCard
+                href="https://superstream.co"
+                title="Superstream"
+                subtitle="The email OS for modern teams. AI support, CRM, newsletters, and lead gen in one fast workspace."
+                screenshotUrl="https://superstream.co"
+                localImagePath="/superstream.png"
+              />
+              <ProductCard
                 href="https://ticketbalie.com"
                 title="Ticketbalie"
                 subtitle="Ticketing platform for events — sales, check-in, and attendee access"
