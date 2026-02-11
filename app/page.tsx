@@ -22,9 +22,6 @@ import { ProductCard } from "@/components/ProductCard";
 import { Section } from "@/components/Section";
 import { GradientBarsBackground } from "@/components/ui/gradient-bars-background";
 
-// Use Node.js runtime instead of Edge Functions
-export const runtime = 'nodejs';
-
 export default function Home() {
   return (
     <div className="relative min-h-screen bg-zinc-50 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
@@ -96,13 +93,7 @@ export default function Home() {
                 localImagePath="/trapspotter.png"
               />
 
-              <ProductCard
-                href="https://www.vnz.be"
-                title="VNZ.be"
-                subtitle="Automation in development for healthcare insurance services"
-                screenshotUrl="https://www.vnz.be"
-                localImagePath="/vnz.png"
-              />
+
               <ProductCard
                 href="https://www.houseoftalents.be/nl-be"
                 title="House of Talents"
