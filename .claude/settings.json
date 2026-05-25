@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__higgsfield__generate_image",
+      "mcp__higgsfield__job_status",
+      "Read(//Users/achileb/Documents/WORK/trapspotter_home/src/components/**)",
+      "Read(//Users/achileb/Documents/WORK/trapspotter_home/**)",
+      "Read(//Users/achileb/Documents/WORK/dazzap/**)",
+      "Read(//Users/achileb/Documents/WORK/dazzap_home/**)",
+      "Read(//Users/achileb/Documents/WORK/hotalents/**)",
+      "Read(//Users/achileb/Documents/WORK/investeren/**)",
+      "Read(//Users/achileb/Documents/WORK/nobon/**)",
+      "Read(//Users/achileb/Documents/WORK/superstream/**)",
+      "Read(//Users/achileb/Documents/WORK/prado/**)",
+      "Read(//Users/achileb/Documents/WORK/ticketbalie/**)",
+      "Read(//Users/achileb/Documents/WORK/trapspotter/**)",
+      "Read(//Users/achileb/Documents/WORK/WIP/sidestream/public/**)",
+      "Read(//Users/achileb/Documents/WORK/WIP/JEROME/nurbanspace/**)",
+      "Read(//Users/achileb/Documents/WORK/WIP/BIN/keizerfest/**)"
+    ]
+  }
+}
