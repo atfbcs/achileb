@@ -20,7 +20,7 @@ export default function Hero() {
         style={{
           maskImage: HERO_MASK,
           WebkitMaskImage: HERO_MASK,
-          opacity: theme === 'dark' ? 0.45 : 0.3,
+          opacity: theme === 'dark' ? 0.45 : 0.6,
         }}
         aria-hidden
       >
@@ -28,12 +28,12 @@ export default function Hero() {
           <Dither
             key={theme}
             waveColor={[1.0, 0.5, 0.22]}
-            waveColorLow={theme === 'dark' ? [0.55, 0.22, 0.08] : [0.98, 0.7, 0.5]}
+            waveColorLow={theme === 'dark' ? [0.55, 0.22, 0.08] : [0.85, 0.4, 0.12]}
             waveSpeed={0.025}
             waveFrequency={3}
-            waveAmplitude={0.28}
-            colorNum={6}
-            pixelSize={1}
+            waveAmplitude={0.32}
+            colorNum={5}
+            pixelSize={2}
             enableMouseInteraction={false}
             mouseRadius={1}
           />

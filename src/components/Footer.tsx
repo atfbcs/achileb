@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { HugeiconsIcon } from '@hugeicons/react'
 import {
   Mail01Icon,
@@ -5,10 +6,15 @@ import {
   NewTwitterIcon,
   LinkedinIcon,
   ArrowUp02Icon,
-  ArrowRight02Icon,
 } from '@hugeicons/core-free-icons'
 import { Wordmark } from '@/components/Logo'
+import { useTheme } from '@/lib/theme'
 import { liveProjects } from '@/data/projects'
+
+const Dither = lazy(() => import('@/components/Dither'))
+
+const FOOTER_MASK =
+  'radial-gradient(ellipse 60% 80% at 50% 0%, black 0%, rgba(0,0,0,0.5) 35%, transparent 75%)'
 
 const social = [
   { icon: GithubIcon, label: 'GitHub', href: 'https://github.com/atfbcs' },
@@ -29,46 +35,46 @@ const linkBase =
   'inline-flex items-center gap-2 text-[13.5px] text-ink-2 hover:text-ink transition-colors'
 
 export default function Footer() {
-  return (
-    <footer className="border-t border-rail bg-surface">
-      <div className="mx-auto max-w-6xl px-5 md:px-8 pt-14 pb-10 md:pt-20 md:pb-12">
-        {/* Top — brand + statement + status */}
-        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-12 pb-12 border-b border-rail">
-          <div className="flex items-start gap-4 max-w-xl">
-            <Wordmark className="h-10 w-10 text-ink shrink-0" />
-            <div>
-              <p className="font-display text-[1.5rem] md:text-[1.75rem] font-bold leading-[1.1] tracking-tight text-ink">
-                I ship web products end&nbsp;to&nbsp;end.
-              </p>
-              <p className="mt-2 text-[14px] text-ink-3">
-                Chief Engineer · founder · based in Ghent, Belgium.
-              </p>
-            </div>
-          </div>
+  const { theme } = useTheme()
 
-          <a
-            href="#contact"
-            className="group self-start shrink-0 inline-flex items-stretch overflow-hidden rounded-2xl border border-rail bg-card transition-all hover:border-rail-strong hover:shadow-sm"
-          >
-            <span className="flex items-center gap-2.5 px-4 py-3 border-r border-rail">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-500 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-500" />
-              </span>
-              <span className="text-[12.5px] font-semibold text-ink">Available</span>
-            </span>
-            <span className="flex flex-col justify-center px-4 py-2">
-              <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink-3">
-                Booking
-              </span>
-              <span className="font-display text-[14px] font-bold tabular-nums text-ink leading-tight">
-                Q1 — Q2 · 2026
-              </span>
-            </span>
-            <span className="flex items-center px-3 border-l border-rail bg-card-inner text-ink-2 transition-all group-hover:bg-brand-500 group-hover:text-white">
-              <HugeiconsIcon icon={ArrowRight02Icon} size={14} strokeWidth={2.2} />
-            </span>
-          </a>
+  return (
+    <footer className="relative overflow-hidden border-t border-rail bg-surface">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          maskImage: FOOTER_MASK,
+          WebkitMaskImage: FOOTER_MASK,
+          opacity: theme === 'dark' ? 0.4 : 0.55,
+        }}
+        aria-hidden
+      >
+        <Suspense fallback={null}>
+          <Dither
+            key={theme}
+            waveColor={[1.0, 0.5, 0.22]}
+            waveColorLow={theme === 'dark' ? [0.55, 0.22, 0.08] : [0.85, 0.4, 0.12]}
+            waveSpeed={0.025}
+            waveFrequency={3}
+            waveAmplitude={0.32}
+            colorNum={5}
+            pixelSize={2}
+            enableMouseInteraction={false}
+            mouseRadius={1}
+          />
+        </Suspense>
+      </div>
+      <div className="relative mx-auto max-w-6xl px-5 md:px-8 pt-14 pb-10 md:pt-20 md:pb-12">
+        {/* Top — brand + statement */}
+        <div className="flex items-start gap-4 max-w-xl pb-12 border-b border-rail">
+          <Wordmark className="h-10 w-10 text-ink shrink-0" />
+          <div>
+            <p className="font-display text-[1.5rem] md:text-[1.75rem] font-bold leading-[1.1] tracking-tight text-ink">
+              I ship web products end&nbsp;to&nbsp;end.
+            </p>
+            <p className="mt-2 text-[14px] text-ink-3">
+              Chief Engineer · founder · based in Ghent, Belgium.
+            </p>
+          </div>
         </div>
 
         {/* Middle — columns */}

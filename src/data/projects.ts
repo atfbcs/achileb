@@ -10,6 +10,8 @@ export type Project = {
   image?: string
   favicon?: string
   accent?: string
+  appStore?: string
+  playStore?: string
 }
 
 export const liveProjects: Project[] = [
@@ -26,6 +28,8 @@ export const liveProjects: Project[] = [
     image: '/assets/screenshots/trapspotter.jpg',
     favicon: '/assets/favicons/trapspotter.png',
     accent: '#ff3d00',
+    appStore: 'https://apps.apple.com/be/app/trapspotter/id6763530472',
+    playStore: 'https://play.google.com/store/apps/details?id=com.trapspotter.app',
   },
   {
     slug: 'ticketbalie',

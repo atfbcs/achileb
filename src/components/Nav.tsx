@@ -7,6 +7,7 @@ import {
   Menu02Icon,
   Cancel01Icon,
   Mail01Icon,
+  Megaphone02Icon,
 } from '@hugeicons/core-free-icons'
 import { Wordmark } from '@/components/Logo'
 import { useTheme } from '@/lib/theme'
@@ -89,10 +90,24 @@ export default function Nav() {
             </button>
             <a
               href="#contact"
-              className="ts-btn-primary py-2! px-3.5! text-[13px]! rounded-xl! hidden sm:inline-flex"
+              className="group relative hidden sm:inline-flex items-center gap-2 overflow-hidden rounded-xl bg-brand-500 px-4 py-2 text-[13px] font-semibold text-white border border-brand-600 transition-all hover:bg-brand-600"
+              style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.22), 0 1px 2px rgba(10,13,18,0.1)' }}
             >
-              Get in touch
-              <HugeiconsIcon icon={ArrowRight02Icon} size={14} strokeWidth={2} />
+              {/* Shimmer sweep */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 -translate-x-full skew-x-12 transition-transform duration-700 ease-out group-hover:translate-x-full"
+                style={{
+                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+                }}
+              />
+              <HugeiconsIcon
+                icon={Megaphone02Icon}
+                size={14}
+                strokeWidth={1.8}
+                className="relative transition-transform group-hover:-rotate-12"
+              />
+              <span className="relative">Let's talk</span>
             </a>
             <button
               type="button"

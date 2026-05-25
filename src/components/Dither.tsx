@@ -28,6 +28,7 @@ uniform vec3 waveColorLow;
 uniform vec2 mousePos;
 uniform int enableMouseInteraction;
 uniform float mouseRadius;
+uniform int rainbow;
 
 vec4 mod289(vec4 x) { return x - floor(x * (1.0/289.0)) * 289.0; }
 vec4 permute(vec4 x) { return mod289(((x * 34.0) + 1.0) * x); }
@@ -92,7 +93,13 @@ void main() {
     float effect = 1.0 - smoothstep(0.0, mouseRadius, dist);
     f -= 0.5 * effect;
   }
-  vec3 col = mix(waveColorLow, waveColor, f);
+  vec3 rainbowCol = vec3(
+    0.5 + 0.5 * cos(6.2831 * f + 0.0),
+    0.5 + 0.5 * cos(6.2831 * f + 2.094),
+    0.5 + 0.5 * cos(6.2831 * f + 4.188)
+  );
+  vec3 mixCol = mix(waveColorLow, waveColor, f);
+  vec3 col = mix(mixCol, rainbowCol, float(rainbow));
   gl_FragColor = vec4(col, 1.0);
 }
 `
@@ -178,6 +185,7 @@ interface WaveUniforms {
   mousePos: THREE.Uniform<THREE.Vector2>
   enableMouseInteraction: THREE.Uniform<number>
   mouseRadius: THREE.Uniform<number>
+  rainbow: THREE.Uniform<number>
 }
 
 interface DitheredWavesProps {
@@ -191,6 +199,7 @@ interface DitheredWavesProps {
   disableAnimation: boolean
   enableMouseInteraction: boolean
   mouseRadius: number
+  rainbow: boolean
 }
 
 function DitheredWaves({
@@ -204,6 +213,7 @@ function DitheredWaves({
   disableAnimation,
   enableMouseInteraction,
   mouseRadius,
+  rainbow,
 }: DitheredWavesProps) {
   const mesh = useRef<THREE.Mesh>(null)
   const mouseRef = useRef(new THREE.Vector2())
@@ -220,6 +230,7 @@ function DitheredWaves({
     mousePos: new THREE.Uniform(new THREE.Vector2(0, 0)),
     enableMouseInteraction: new THREE.Uniform(enableMouseInteraction ? 1 : 0),
     mouseRadius: new THREE.Uniform(mouseRadius),
+    rainbow: new THREE.Uniform(rainbow ? 1 : 0),
   })
 
   useEffect(() => {
@@ -250,6 +261,7 @@ function DitheredWaves({
     }
     u.enableMouseInteraction.value = enableMouseInteraction ? 1 : 0
     u.mouseRadius.value = mouseRadius
+    u.rainbow.value = rainbow ? 1 : 0
     if (enableMouseInteraction) u.mousePos.value.copy(mouseRef.current)
   })
 
@@ -297,6 +309,7 @@ interface DitherProps {
   disableAnimation?: boolean
   enableMouseInteraction?: boolean
   mouseRadius?: number
+  rainbow?: boolean
 }
 
 export default function Dither({
@@ -310,6 +323,7 @@ export default function Dither({
   disableAnimation = false,
   enableMouseInteraction = true,
   mouseRadius = 1,
+  rainbow = false,
 }: DitherProps) {
   return (
     <Canvas
@@ -329,6 +343,7 @@ export default function Dither({
         disableAnimation={disableAnimation}
         enableMouseInteraction={enableMouseInteraction}
         mouseRadius={mouseRadius}
+        rainbow={rainbow}
       />
     </Canvas>
   )
