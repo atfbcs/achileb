@@ -63,7 +63,7 @@ const logos = [
 export default function Marquee() {
   const doubled = [...logos, ...logos]
   return (
-    <section data-section="marquee" className="bg-surface border-y border-rail py-8 overflow-hidden">
+    <section data-section="marquee" className="bg-surface border-y border-rail py-8 overflow-x-auto overflow-y-hidden scrollbar-none overscroll-x-contain [touch-action:pan-x]">
       <div className="animate-marquee flex whitespace-nowrap items-center">
         {doubled.map(({ Icon, label }, i) => (
           <span

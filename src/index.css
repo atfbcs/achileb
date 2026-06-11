@@ -214,8 +214,15 @@
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
-  .animate-marquee { animation: ts-marquee 50s linear infinite; }
+  .animate-marquee { animation: ts-marquee 50s linear infinite; will-change: transform; backface-visibility: hidden; }
+  @media (max-width: 768px) {
+    .animate-marquee { animation-duration: 30s; }
+  }
   .animate-marquee:hover { animation-play-state: paused; }
+  .animate-marquee:active { animation-play-state: paused; }
+
+  .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
 
   @keyframes ts-fade-up {
     from { opacity: 0; transform: translateY(12px); }
