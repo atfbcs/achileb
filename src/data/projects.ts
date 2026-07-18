@@ -104,17 +104,17 @@ export const liveProjects: Project[] = [
 ]
 
 export const caseStudies: Project[] = [
-  {
-    slug: 'prado',
-    name: 'Prado',
-    tagline: 'Manage influencer collaborations from proposal to performance',
-    description:
-      'Full-stack dashboard for the entire influencer campaign workflow — discovery, briefs, contracts, and performance analytics — in one interface.',
-    year: '2026',
-    role: 'Chief Engineer',
-    stack: ['React 19', 'Vite', 'Supabase', 'TanStack Query', 'Tiptap'],
-    accent: '#f97316',
-  },
+  // {
+  //   slug: 'prado',
+  //   name: 'Prado',
+  //   tagline: 'Manage influencer collaborations from proposal to performance',
+  //   description:
+  //     'Full-stack dashboard for the entire influencer campaign workflow — discovery, briefs, contracts, and performance analytics — in one interface.',
+  //   year: '2026',
+  //   role: 'Chief Engineer',
+  //   stack: ['React 19', 'Vite', 'Supabase', 'TanStack Query', 'Tiptap'],
+  //   accent: '#f97316',
+  // },
   {
     slug: 'houseoftalents',
     name: 'House of Talents',
