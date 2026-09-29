@@ -1,3 +1,5 @@
+import { HugeiconsIcon } from '@hugeicons/react'
+import { ArrowUpRight01Icon } from '@hugeicons/core-free-icons'
 import type { Project } from '@/data/projects'
 
 export default function StudyCard({ project }: { project: Project }) {
@@ -5,7 +7,26 @@ export default function StudyCard({ project }: { project: Project }) {
     <div className="ts-card p-2 h-full">
       <div className="ts-card-inner p-5 md:p-6 h-full flex flex-col">
         <div className="flex items-start justify-between gap-3 mb-3">
-          <h4 className="font-display text-[1.25rem] font-bold leading-tight">{project.name}</h4>
+          <h4 className="font-display text-[1.25rem] font-bold leading-tight flex items-center gap-2 flex-wrap">
+            {project.url ? (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 hover:text-ink-2 transition-colors"
+              >
+                {project.name}
+                <HugeiconsIcon icon={ArrowUpRight01Icon} size={14} strokeWidth={2} className="text-ink-3" />
+              </a>
+            ) : (
+              project.name
+            )}
+            {project.nda && (
+              <span className="font-mono text-[10px] font-normal uppercase tracking-[0.1em] text-ink-3 px-1.5 py-0.5 rounded border border-rail bg-card">
+                NDA
+              </span>
+            )}
+          </h4>
           <span className="font-display font-bold tabular-nums text-[13px] text-ink-2 mt-1 shrink-0">{project.year}</span>
         </div>
 

@@ -38,8 +38,9 @@ function GooglePlayLogo({ size = 16 }: { size?: number }) {
 
 const cornerColor: Record<string, string> = {
   trapspotter: '#ef4444', // red
+  leopol: '#737373', // neutral gray (black & white brand)
   ticketbalie: '#3b82f6', // blue
-  superstream: '#475569', // dark gray
+  openmail: '#475569', // dark gray
   investeren: '#22c55e', // green
   dazzap: '#a855f7', // purple
 }
@@ -136,7 +137,8 @@ export default function ProjectCard({ project }: { project: Project }) {
             ))}
           </div>
 
-          <div className="flex items-stretch gap-2 flex-nowrap">
+          {/* Mobile: full "Visit {name}" with store badges on their own row below */}
+          <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-stretch">
             {project.url && (
               hasStore ? (
                 <a
@@ -145,7 +147,8 @@ export default function ProjectCard({ project }: { project: Project }) {
                   rel="noreferrer"
                   className="ts-btn-secondary shrink-0 py-2! px-3.5! text-[12.5px]!"
                 >
-                  Visit
+                  <span className="sm:hidden">Visit {project.name}</span>
+                  <span className="hidden sm:inline">Visit</span>
                   <HugeiconsIcon icon={ArrowUpRight01Icon} size={13} strokeWidth={2} />
                 </a>
               ) : (
@@ -160,37 +163,41 @@ export default function ProjectCard({ project }: { project: Project }) {
                 </a>
               )
             )}
-            {project.appStore && (
-              <a
-                href={project.appStore}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Download on the App Store"
-                className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-[#0a0a0a] border border-white/10 px-3 py-2 text-white transition hover:bg-[#1a1a1a]"
-                style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.10), 0 1px 2px rgba(10,13,18,0.12)' }}
-              >
-                <SiApple size={16} aria-hidden />
-                <span className="flex flex-col leading-none text-left">
-                  <span className="text-[8px] uppercase tracking-[0.12em] text-white/70">Download on</span>
-                  <span className="text-[12px] font-semibold mt-0.5">App Store</span>
-                </span>
-              </a>
-            )}
-            {project.playStore && (
-              <a
-                href={project.playStore}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Get it on Google Play"
-                className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-[#0a0a0a] border border-white/10 px-3 py-2 text-white transition hover:bg-[#1a1a1a]"
-                style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.10), 0 1px 2px rgba(10,13,18,0.12)' }}
-              >
-                <GooglePlayLogo size={16} />
-                <span className="flex flex-col leading-none text-left">
-                  <span className="text-[8px] uppercase tracking-[0.12em] text-white/70">Get it on</span>
-                  <span className="text-[12px] font-semibold mt-0.5">Google Play</span>
-                </span>
-              </a>
+            {hasStore && (
+              <div className="flex items-stretch gap-2 flex-nowrap">
+                {project.appStore && (
+                  <a
+                    href={project.appStore}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Download on the App Store"
+                    className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-[#0a0a0a] border border-white/10 px-3 py-2 text-white transition hover:bg-[#1a1a1a]"
+                    style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.10), 0 1px 2px rgba(10,13,18,0.12)' }}
+                  >
+                    <SiApple size={16} aria-hidden />
+                    <span className="flex flex-col leading-none text-left">
+                      <span className="text-[8px] uppercase tracking-[0.12em] text-white/70">Download on</span>
+                      <span className="text-[12px] font-semibold mt-0.5">App Store</span>
+                    </span>
+                  </a>
+                )}
+                {project.playStore && (
+                  <a
+                    href={project.playStore}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Get it on Google Play"
+                    className="shrink-0 inline-flex items-center gap-2 rounded-xl bg-[#0a0a0a] border border-white/10 px-3 py-2 text-white transition hover:bg-[#1a1a1a]"
+                    style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.10), 0 1px 2px rgba(10,13,18,0.12)' }}
+                  >
+                    <GooglePlayLogo size={16} />
+                    <span className="flex flex-col leading-none text-left">
+                      <span className="text-[8px] uppercase tracking-[0.12em] text-white/70">Get it on</span>
+                      <span className="text-[12px] font-semibold mt-0.5">Google Play</span>
+                    </span>
+                  </a>
+                )}
+              </div>
             )}
           </div>
         </div>

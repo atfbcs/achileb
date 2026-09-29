@@ -2,14 +2,19 @@ import { writeFile, mkdir } from 'node:fs/promises'
 import path from 'node:path'
 import { load } from 'cheerio'
 
-const sites = [
+const all = [
   { slug: 'trapspotter', url: 'https://trapspotter.com' },
+  { slug: 'leopol', url: 'https://leopol.ai' },
   { slug: 'ticketbalie', url: 'https://ticketbalie.com' },
-  { slug: 'superstream', url: 'https://superstream.co' },
+  { slug: 'openmail', url: 'https://openmails.dev' },
   { slug: 'investeren', url: 'https://investeren.org' },
   { slug: 'dazzap', url: 'https://dazzap.com' },
   { slug: 'sidestream', url: 'https://sidestream.be' },
 ]
+
+// `node scripts/fetch-favicons.mjs openmail` fetches only those
+const only = process.argv.slice(2)
+const sites = only.length ? all.filter((s) => only.includes(s.slug)) : all
 
 const outDir = path.resolve(process.cwd(), 'public/assets/favicons')
 await mkdir(outDir, { recursive: true })

@@ -35,7 +35,7 @@ function App() {
           <div className="relative">
             <SectionHeader
               title="Selected studies."
-              description="Client work and collaborations across hospitality, culture, talent, fintech and aviation."
+              description="Client work and collaborations across interiors, culture, talent, creators and marketing."
             />
             <div className="mx-auto max-w-6xl px-5 md:px-8">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">

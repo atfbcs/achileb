@@ -12,6 +12,7 @@ export type Project = {
   accent?: string
   appStore?: string
   playStore?: string
+  nda?: boolean
 }
 
 export const liveProjects: Project[] = [
@@ -20,7 +21,7 @@ export const liveProjects: Project[] = [
     name: 'Trapspotter',
     tagline: 'Your smart copilot for a safe & carefree drive',
     description:
-      'Community-powered driving app — avoid traffic, prevent unexpected fines, and drive safer with real-time alerts. 40K+ active users, 2M+ alerts shared. iOS / Android / web.',
+      'Community-powered driving app — avoid traffic, prevent unexpected fines, and drive safer with real-time alerts across Belgium, the Netherlands, France, Germany and Luxembourg. 40K+ active users, 4.2M+ alerts processed. iOS / Android / web.',
     year: '2025',
     role: 'Chief Engineer',
     stack: ['React', 'Capacitor', 'Supabase', 'MapLibre', 'RevenueCat'],
@@ -32,11 +33,28 @@ export const liveProjects: Project[] = [
     playStore: 'https://play.google.com/store/apps/details?id=com.trapspotter.app',
   },
   {
+    slug: 'leopol',
+    name: 'Leopol',
+    tagline: 'Know what’s coming, long before you get there',
+    description:
+      'The new Trapspotter — calm, timely warnings for speed cameras, average-speed zones, mobile checks and road hazards in five countries. Free to use, Pro at €4.95/month. Site in NL / FR / EN.',
+    year: '2026',
+    role: 'Chief Engineer',
+    stack: ['Next.js 16', 'React 19', 'Tailwind 4', 'Capacitor', 'Supabase'],
+    url: 'https://leopol.ai',
+    image: '/assets/screenshots/leopol.jpg',
+    favicon: '/assets/favicons/leopol.png',
+    accent: '#0a0a0a',
+    appStore: 'https://apps.apple.com/app/apple-store/id6763530472?pt=128824147&ct=leopol&mt=8',
+    playStore:
+      'https://play.google.com/store/apps/details?id=com.trapspotter.app&referrer=utm_source%3Dleopol.ai%26utm_medium%3Dwebsite',
+  },
+  {
     slug: 'ticketbalie',
     name: 'Ticketbalie',
     tagline: 'Sell tickets. Without the hassle.',
     description:
-      'Event management made simple — sell tickets, scan entry, and manage events end-to-end. Stripe Connect payouts, QR scanning, multi-language (EN/NL), guest management.',
+      'Ticketing platform for organisers in Belgium and the Netherlands — set up an event in minutes, get paid directly and scan at the door. Organiser dashboard with design editor, email campaigns, inbox, finances and webshop.',
     year: '2025',
     role: 'Co-founder · Chief Engineer',
     stack: ['React', 'Vite', 'Supabase', 'Stripe Connect', 'Mapbox'],
@@ -46,17 +64,17 @@ export const liveProjects: Project[] = [
     accent: '#10b981',
   },
   {
-    slug: 'superstream',
-    name: 'Superstream',
-    tagline: 'A modern, Gmail-like mailbox system',
+    slug: 'openmail',
+    name: 'OpenMail',
+    tagline: 'Your mail. Your servers. Your rules.',
     description:
-      'Gmail-inspired email client with real-time updates, rich-text composition (Tiptap), threading, attachments and video/PDF generation via Remotion.',
+      'Open-source (MIT) email you host yourself — a real inbox and newsletter sender on your own Supabase and Resend. Threading, folders, search, attachments, audiences, campaigns and an optional AI compose helper.',
     year: '2025',
     role: 'Co-founder · Chief Engineer',
-    stack: ['React 19', 'Supabase', 'Tiptap', 'Resend', 'Remotion'],
-    url: 'https://superstream.co',
-    image: '/assets/screenshots/superstream.jpg',
-    favicon: '/assets/favicons/superstream.png',
+    stack: ['React 19', 'Supabase', 'Resend', 'Tiptap'],
+    url: 'https://openmails.dev',
+    image: '/assets/screenshots/openmail.jpg',
+    favicon: '/assets/favicons/openmail-circle.svg',
     accent: '#8b5cf6',
   },
   {
@@ -90,9 +108,9 @@ export const liveProjects: Project[] = [
   {
     slug: 'sidestream',
     name: 'Sidestream',
-    tagline: 'Studio for side-quests & weekend builds',
+    tagline: 'A product studio in Ghent — software that keeps running',
     description:
-      'The umbrella brand for experiments, prototypes and tools shipped in public — where most of these live products started.',
+      'We design, build and run software, automation and AI — for our own products and for our clients. One team, from the first call to the support afterwards.',
     year: '2025',
     role: 'Co-founder · Chief Engineer',
     stack: ['Various'],
@@ -104,17 +122,30 @@ export const liveProjects: Project[] = [
 ]
 
 export const caseStudies: Project[] = [
-  // {
-  //   slug: 'prado',
-  //   name: 'Prado',
-  //   tagline: 'Manage influencer collaborations from proposal to performance',
-  //   description:
-  //     'Full-stack dashboard for the entire influencer campaign workflow — discovery, briefs, contracts, and performance analytics — in one interface.',
-  //   year: '2026',
-  //   role: 'Chief Engineer',
-  //   stack: ['React 19', 'Vite', 'Supabase', 'TanStack Query', 'Tiptap'],
-  //   accent: '#f97316',
-  // },
+  {
+    slug: 'nurbanspace',
+    name: 'Nurban Space',
+    tagline: 'Space-saving, modular furniture',
+    description:
+      'Ground-up rebuild of the Webflow site on a new design system — 95 statically prerendered routes, a filterable catalogue and 46 product pages, plus an interactive 3D configurator for materials, colours and dimensions.',
+    year: '2026',
+    role: 'Chief Engineer',
+    stack: ['Next.js 16', 'Tailwind 4', 'Three.js'],
+    url: 'https://nurbanspace.com',
+    accent: '#06b6d4',
+  },
+  {
+    slug: 'compactsolutions',
+    name: 'Compact Solutions',
+    tagline: 'The future of space saving',
+    description:
+      'Site and dealer portal for a Belgian manufacturer of wall beds, space-saving furniture and kitchens — dealer sign-up with approval flow, orders and a gated downloads library.',
+    year: '2026',
+    role: 'Chief Engineer',
+    stack: ['Next.js 16', 'Supabase', 'R3F'],
+    url: 'https://compactsolutions.be',
+    accent: '#10b981',
+  },
   {
     slug: 'houseoftalents',
     name: 'House of Talents',
@@ -124,79 +155,44 @@ export const caseStudies: Project[] = [
     year: '2025',
     role: 'Chief Engineer',
     stack: ['React 18', 'Vite', 'Supabase', 'Three.js', 'Radix UI'],
+    url: 'https://houseoftalents.be',
     accent: '#a855f7',
   },
   {
-    slug: 'lodicy',
-    name: 'Lodicy',
-    tagline: 'Direct-booking microsites for independent hosts',
-    description: 'Direct-booking microsite system for independent lodging operators.',
-    year: '2025',
-    role: 'Chief Engineer',
-    stack: ['Next.js', 'Stripe', 'Postgres'],
-    accent: '#10b981',
-  },
-  {
-    slug: 'nurbanspace',
-    name: 'NURBAN Configurator',
-    tagline: 'Interactive 3D builder for urban furniture',
+    slug: 'wintercircus',
+    name: 'Wintercircus',
+    tagline: 'Innovation, events, food & community · Ghent',
     description:
-      'Real-time 3D configurator — customise materials, colours and dimensions of urban furniture pieces with instant previews. Lets customers prototype before ordering.',
-    year: '2026',
-    role: 'Chief Engineer',
-    stack: ['React 19', 'Vite', 'Three.js', 'R3F', 'Zustand'],
-    accent: '#06b6d4',
-  },
-  {
-    slug: 'zoutegrandprix',
-    name: 'Zoute Grand Prix',
-    tagline: 'A classic-car event, on the web',
-    description: 'Race weekend platform — schedule, drivers, live coverage and ticketing.',
-    year: '2025',
-    role: 'Chief Engineer',
-    stack: ['Next.js', 'Sanity'],
-    accent: '#eab308',
-  },
-  {
-    slug: 'aslgroup',
-    name: 'ASL Group',
-    tagline: 'Aviation services group',
-    description: 'Corporate site rebuild and operations microsites across business units.',
-    year: '2025',
-    role: 'Chief Engineer',
-    stack: ['Next.js', 'Headless CMS'],
-    accent: '#3b82f6',
-  },
-  {
-    slug: 'flesjesfabriek',
-    name: 'Flesjesfabriek',
-    tagline: 'Small-batch beverages, big-batch tooling',
-    description: 'D2C storefront, custom-label flow and fulfilment back-office.',
-    year: '2026',
-    role: 'Chief Engineer',
-    stack: ['Shopify Hydrogen', 'Remix'],
-    accent: '#f43f5e',
-  },
-  {
-    slug: 'keizerfest',
-    name: 'Keizerfest 2026',
-    tagline: 'Free three-day city festival · Keizerpark Gent',
-    description:
-      'Multilingual (NL/EN/FR) event site with live crowdfunding progress, four sub-festival schedules, partner showcase and embedded Ticketbalie checkout.',
-    year: '2026',
-    role: 'Chief Engineer',
-    stack: ['HTML', 'Tailwind', 'Ticketbalie', 'Iconify'],
-    accent: '#fb923c',
-  },
-  {
-    slug: 'bar-bassie',
-    name: 'Bar Bassie & Tribune',
-    tagline: 'Wintercircus, Ghent — bar & tribune brand',
-    description:
-      'Identity & site for Bar Bassie and Tribune, the bar/restaurant inside the Wintercircus venue in Ghent.',
+      'Work for the iconic Ghent venue — including identity and site for Bar Bassie and Tribune, the bar and restaurant inside the Wintercircus.',
     year: '2026',
     role: 'Chief Engineer',
     stack: ['Next.js', 'Sanity'],
+    url: 'https://wintercircus.be',
     accent: '#dc2626',
+  },
+  {
+    slug: 'touzani',
+    name: 'FC Touzani',
+    tagline: 'One upload, every channel',
+    description:
+      'Publishing studio for Soufiane Touzani’s YouTube network — upload a video once, fan it out to every connected channel and track each upload from queued to live, with one-click retry.',
+    year: '2026',
+    role: 'Chief Engineer',
+    stack: ['React Router 7', 'Supabase', 'Tailwind 4'],
+    url: 'https://touzanifc.com',
+    accent: '#0d9488',
+  },
+  {
+    // client name withheld under NDA — keep it out of this file
+    slug: 'nda-influencer',
+    name: 'Confidential client',
+    tagline: 'Influencer collaborations, from proposal to performance',
+    description:
+      'Workspace for the full creator-partnership lifecycle — proposal, negotiation, contract & e-signature, payment, content and performance — paired with paid-media analytics and AI-assisted email.',
+    year: '2026',
+    role: 'Chief Engineer',
+    stack: ['React 19', 'Supabase', 'TanStack Query'],
+    nda: true,
+    accent: '#f97316',
   },
 ]
