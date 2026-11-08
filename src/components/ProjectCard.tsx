@@ -42,7 +42,6 @@ const cornerColor: Record<string, string> = {
   ticketbalie: '#3b82f6', // blue
   openmail: '#475569', // dark gray
   investeren: '#22c55e', // green
-  dazzap: '#a855f7', // purple
 }
 
 const RAINBOW =

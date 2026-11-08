@@ -8,7 +8,6 @@ const all = [
   { slug: 'ticketbalie', url: 'https://ticketbalie.com' },
   { slug: 'openmail', url: 'https://openmails.dev' },
   { slug: 'investeren', url: 'https://investeren.org' },
-  { slug: 'dazzap', url: 'https://dazzap.com' },
   { slug: 'sidestream', url: 'https://sidestream.be' },
 ]
 

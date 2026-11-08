@@ -92,20 +92,6 @@ export const liveProjects: Project[] = [
     accent: '#facc15',
   },
   {
-    slug: 'dazzap',
-    name: 'Dazzap',
-    tagline: 'Streaming infrastructure for live experiences',
-    description:
-      'Full streaming platform with chat, real-time data, QR-driven flows, PDF export and content management. WhatsApp Business integration for customer ops.',
-    year: '2025',
-    role: 'Chief Engineer',
-    stack: ['React 19', 'Vite', 'Supabase', 'Stripe', 'Radix UI'],
-    url: 'https://dazzap.com',
-    image: '/assets/screenshots/dazzap.jpg',
-    favicon: '/assets/favicons/dazzap.png',
-    accent: '#ec4899',
-  },
-  {
     slug: 'sidestream',
     name: 'Sidestream',
     tagline: 'A product studio in Ghent — software that keeps running',
